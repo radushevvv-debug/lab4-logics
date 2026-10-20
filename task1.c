@@ -51,6 +51,20 @@ const Node *find(const Node *root, int value)
     return find(root->right, value);
 }
 
+int count_occurrences(const Node *root, int value)
+{
+    if (root == NULL) {
+        return 0;
+    }
+
+    int count = (root->value == value);
+
+    count += count_occurrences(root->left, value);
+    count += count_occurrences(root->right, value);
+
+    return count;
+}
+
 void print_tree(const Node *root, int depth)
 {
     if (root == NULL) {
@@ -107,6 +121,9 @@ int main(void)
     } else {
         printf("Value %d not found\n", target);
     }
+
+    printf("Occurrences of %d: %d\n",
+           target, count_occurrences(root, target));
 
     free_tree(root);
 
