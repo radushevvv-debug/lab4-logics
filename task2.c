@@ -68,15 +68,16 @@ void free_tree(Node *root)
 
 int main(void)
 {
-    int values[] = {8, 3, 10, 3, 8, 6};
-    int count = (int)(sizeof(values) / sizeof(values[0]));
     Node *root = NULL;
+    int value;
 
-    for (int i = 0; i < count; i++) {
-        root = insert_unique(root, values[i]);
+    printf("Enter integers to build the tree (-1 to finish):\n");
+
+    while (scanf("%d", &value) == 1 && value != -1) {
+        root = insert_unique(root, value);
     }
 
-    printf("Tree without duplicates (rotated 90 degrees):\n");
+    printf("\nTree without duplicates (rotated 90 degrees):\n");
     print_tree(root, 0);
 
     free_tree(root);
